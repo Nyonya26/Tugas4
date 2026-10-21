@@ -1,0 +1,120 @@
+*{box-sizing:border-box}body{margin:0;background:#fff00b;color:#050505;font-family:Arial,sans-serif}button{font-family:inherit;cursor:pointer}
+.wrap{width:100%;min-height:100vh;background:#fff00b}
+#home{min-height:100vh;padding:11px 0}.hero{width:100%;min-height:458px;padding:72px 9.7%;display:grid;grid-template-columns:1fr 1fr;gap:9%;align-items:center}
+.logo{font-size:38px;font-weight:900}.hero h1{font-family:"Arial Black",Arial,sans-serif;font-size:45px;line-height:1.05;margin:0 0 24px;font-weight:900}.hero h1 span{border-bottom:3px solid #1685ff}
+.hero p{max-width:470px;font-size:18px;line-height:1.35;font-weight:700;margin:0 0 22px}.hero img{width:100%;max-width:367px;height:294px;object-fit:cover;display:block}
+.start{background:#050505;color:#fff00b;border:0;width:246px;height:65px;font-size:18px;font-weight:900}
+#dashboard{display:none;padding:0 3.3% 20px}.dash-title{font-weight:900;font-size:17px;margin:0 0 2px}.dash-sub{font-size:10px;font-weight:700;margin:0 0 7px}
+.target{height:43px;background:#f0b52b;border:3px solid #1685ff;padding:4px 6px;font-size:9px;font-weight:900}.target small{display:block;font-size:8px;margin-top:2px}.target-line{height:8px;background:#f1f1f1;margin-top:3px}.target-line i{display:block;width:0;height:100%;background:#1685ff}
+.stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:9.5%;margin:11px 0 15px}.stat{background:#f0b52b;height:55px;text-align:center;display:flex;flex-direction:column;justify-content:center;font-weight:900;font-size:12px}.stat strong{font-size:13px}.stat .emoji{font-size:14px;line-height:13px}
+.title{font-size:17px;font-weight:900;margin:7px 0}.schedule{background:#f0b52b;padding:0 8px}.row{height:57px;display:grid;grid-template-columns:53px 1fr 55px;align-items:center}.row+.row{border-top:1px solid rgba(0,0,0,.05)}.time{font-family:Georgia,serif;font-size:14px}.activity{font-family:Georgia,serif;font-size:14px;line-height:1.05}.activity b{display:block;font-weight:400}
+.check{width:35px;height:35px;border:3px solid #050505;border-radius:50%;background:transparent;justify-self:center;position:relative}.check.done:after{content:"✓";position:absolute;inset:0;display:grid;place-items:center;font-size:23px;font-weight:900}
+.week{background:#f0b52b;padding:5px 11px 10px;display:grid;grid-template-columns:repeat(7,1fr);gap:11px}.day{text-align:center;font-size:11px;font-weight:900}.bar{height:23px;background:#eee;margin-top:5px}.bar i{display:block;width:0;height:100%;background:#1685ff}
+.exercise{background:#f0b52b;margin-bottom:16px;padding:10px;min-height:96px}.exercise h3{font-family:Georgia,serif;font-size:17px;font-weight:400;margin:0 0 1px}.exercise p{font-family:Georgia,serif;font-size:16px;margin:0 0 6px}.exercise button{background:#eee;border:0;padding:4px 8px;font-size:12px;font-weight:900}
+.controls{background:#f0b52b;padding:10px;margin-top:4px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:12px}.controls input{width:85px;border:2px solid #111;padding:5px;background:white}.controls button{border:0;background:#050505;color:#fff00b;padding:6px 9px;font-weight:900}.reset{margin:10px 0;border:2px solid #050505;background:transparent;padding:6px 10px;font-weight:900}
+@media(max-width:700px){.hero{grid-template-columns:1fr;padding:45px 8%;gap:30px}.hero img{max-width:100%}.stats{gap:8px}.week{gap:3px}.row{grid-template-columns:48px 1fr 48px}}
+
+/* Hari sekarang */
+day.hari-aktif {
+    background-color: #dceeff;
+    border: 2px solid #3182ce;
+    color: #174a7e;
+    border-radius: 10px;
+}
+
+/* Kartu jadwal */
+.jadwal-item {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 15px;
+    margin: 10px 0;
+}
+
+.label-latihan {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.label-latihan input {
+    width: 18px;
+    height: 18px;
+    accent-color: #28a765;
+    cursor: pointer;
+}
+
+.jadwal-item p {
+    margin: 8px 0;
+}
+
+.status-latihan {
+    color: #777;
+    font-size: 13px;
+}
+
+/* Jika dicentang */
+.jadwal-item.latihan-selesai {
+    background: #e3f8e9;
+    border-color: #28a765;
+}
+
+.latihan-selesai .status-latihan {
+    color: #21864b;
+    font-weight: bold;
+}
+
+.latihan-selesai strong {
+    text-decoration: line-through;
+}
+
+.jadwal-kosong {
+    padding: 18px;
+    text-align: center;
+}
+
+/* TOAST BAR / SNACKBAR */
+.toast {
+    position: fixed;
+    bottom: 25px;
+    left: 50%;
+    transform: translate(-50%, 20px);
+    background: #25332c;
+    color: #ffffff;
+    padding: 14px 22px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 99999;
+    max-width: 90%;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+.toast.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, 0);
+}
+.toast {
+    position: fixed;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #25332c;
+    color: white;
+    padding: 14px 22px;
+    border-radius: 10px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s;
+    z-index: 99999;
+}
+
+.toast.show {
+    opacity: 1;
+    visibility: visible;
+}
